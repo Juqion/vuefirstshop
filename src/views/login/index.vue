@@ -1,19 +1,29 @@
 <template>
   <div class="login_container">
     <el-row>
-      <el-col :span = "12" :xs = "0"></el-col>
-      <el-col :span = "12" :xs = "24">
+      <el-col :span="12" :xs="0"></el-col>
+      <el-col :span="12" :xs="24">
         <el-form class="login_form" :model="loginForm">
           <h1>登录</h1>
           <h2>欢迎来到居其商城</h2>
           <el-form-item>
-            <el-input :prefix-icon="User" v-model="loginForm.username"></el-input>
+            <el-input
+              :prefix-icon="User"
+              v-model="loginForm.username"
+            ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-input type="password" :prefix-icon="Lock" v-model="loginForm.password" show-password></el-input>
+            <el-input
+              type="password"
+              :prefix-icon="Lock"
+              v-model="loginForm.password"
+              show-password
+            ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button class="login_button" @click="userLoginEvent">登录</el-button>
+            <el-button class="login_button" @click="userLoginEvent">
+              登录
+            </el-button>
           </el-form-item>
         </el-form>
       </el-col>
@@ -22,26 +32,26 @@
 </template>
 
 <script setup>
-import {User, Lock} from '@element-plus/icons-vue'
-import {reactive} from "vue";
-import userStore from "@/store/modules/user";
-import $router from "@/router"
-import {ElNotification} from "element-plus";
+import { User, Lock } from '@element-plus/icons-vue'
+import { reactive } from 'vue'
+import userStore from '@/store/modules/user'
+import $router from '@/router'
+import { ElNotification } from 'element-plus'
 
-let loginForm = reactive({username: 'admin', password: '111111'});
+let loginForm = reactive({ username: 'admin', password: '111111' })
 let loginStore = userStore()
 const userLoginEvent = async () => {
   try {
-    await loginStore.userLogin(loginForm);
+    await loginStore.userLogin(loginForm)
     await $router.push('/')
     ElNotification({
       type: 'success',
-      message: '登录成功'
+      message: '登录成功',
     })
   } catch (error) {
     ElNotification({
       type: 'error',
-      message: error.message
+      message: error.message,
     })
   }
 }
@@ -58,7 +68,7 @@ const userLoginEvent = async () => {
     position: relative;
     width: 80%;
     top: 30vh;
-    background: url("@/assets/images/login_form.png") no-repeat;
+    background: url('@/assets/images/login_form.png') no-repeat;
     background-size: cover;
     padding: 40px;
 
